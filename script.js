@@ -2,6 +2,7 @@ let library = (() => {
     let _books = [];
 
     let _makeBook = (name, author, pages, hasRead) => {
+        pages = Number(pages);
         return {name, author, pages, hasRead};
     };
 
@@ -42,7 +43,20 @@ let webpage = ((doc, lib) => {
         numPagesDiv.innerText = `${book.pages} pages`;
         let hasReadDiv = doc.createElement('div');
         hasReadDiv.classList.add("hasRead");
-        hasReadDiv.innerText = book.hasRead ? 'Has been read' : 'Has not been read';
+
+        let hasReadText = doc.createElement('div');
+        hasReadText.innerText = book.hasRead ? 'Has been read' : 'Has not been read';
+
+        let readCheckbox = document.createElement("INPUT");
+        readCheckbox.setAttribute("type", "checkbox");
+        readCheckbox.checked = book.hasRead;
+        readCheckbox.addEventListener("change", (e) => {
+            book.hasRead = readCheckbox.checked;
+            hasReadText.innerText = book.hasRead ? 'Has been read' : 'Has not been read';
+        });
+         
+        hasReadDiv.appendChild(readCheckbox);
+        hasReadDiv.appendChild(hasReadText);
 
         let removeButton = doc.createElement("button");
         removeButton.innerText = "X";

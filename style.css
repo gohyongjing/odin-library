@@ -4,6 +4,10 @@ body {
     gap: 50px;
 }
 
+input[type="checkbox"] {
+    height: 24px;
+}
+
 form, .books {
     padding: 10px;
     background-color: lightblue;
@@ -41,11 +45,22 @@ input[type="button"] {
     border-radius: 10px;
     background-color: aliceblue;
     font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.title {
+.book .title {
     font-size: 26px;
     font-weight: 600;
+}
+
+.book > div {
+    display: flex;
+}
+
+.book > div > input[type="checkbox"] {
+    width: 40px;
 }
 
 .book button {
